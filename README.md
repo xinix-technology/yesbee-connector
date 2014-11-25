@@ -48,7 +48,6 @@ class Connector {
 ```php
 $client = Yesbee::facetory('http://localhost', 4000);
 
-
 $client
 ->post('/checkout', array(
     'key' => 'value'
@@ -57,13 +56,11 @@ $client
 ->header(array())
 ->send();
 
-
 $client
 ->exchange(array())
 ->header('key', 'value')
 ->header(array())
 ->send('/checkout');
-
 
 ```
 
@@ -83,7 +80,6 @@ use Guzzle `Norm use this library`
 
 -------------------------------------------------------------------------------
 
-
 # TODO
 
 - component mongo: (optional)
@@ -96,23 +92,23 @@ this.context.config('anu.gemes');
 from manifest.json
 ```json
 {
-"config": {
-"anu": {
-"gemes": "xxx"
-}
-}
+    "config": {
+        "anu": {
+            "gemes": "xxx"
+        }
+    }
 }
 ```
 
 ## Store -> Checkout Engine (REDIRECT)
 
-open /initiate?store_id=xxx&api_token=xxx&amount=123456
+open /initiate?store_id=xyz&api_token=asd420fE&amount=123456
 
 ## Checkout Engine -> (yesbee) Core Acq
 
 REQ:
 ```
-GET /checkout.json?store_id=xxx&api_token=xxx&amount=123456
+GET /checkout.json?store_id=xyz&api_token=asd420fE&amount=123456
 Content-Type: application/json
 ```
 
@@ -121,11 +117,11 @@ RESP:
 
 Body:
 {
-"refnum": "xxx"
-"store_id": "xxx",
-"amount": 123456,
-"fee": 12345,
-"total": 123456 + 12345
+    "refnum": "xyz:asd420fE"
+    "store_id": "xyz",
+    "amount": 123456,
+    "fee": 12345,
+    "total": 123456 + 12345
 }
 ```
 
@@ -142,7 +138,7 @@ xxx
 
 ```
 socketio::emit('wait-for-payment', {
-"refnum": "xxx"
+    "refnum": "xxx"
 })
 ```
 
@@ -159,12 +155,12 @@ REQ:
 POST /checkout/:refnum.json
 
 {
-"refnum": "xxx"
-"store_id": "xxx",
-"amount": 123456,
-"fee": 12345,
-"total": 123456 + 12345,
-"issuer_data": "xxx"
+    "refnum": "xxx"
+    "store_id": "xxx",
+    "amount": 123456,
+    "fee": 12345,
+    "total": 123456 + 12345,
+    "issuer_data": "xxx"
 }
 ```
 
@@ -193,9 +189,9 @@ GET /initiate
 
 Body:
 {
-"store_id": "xxx",
-"api_token": "xxx",
-"amount": 123456
+    "store_id": "xxx",
+    "api_token": "xxx",
+    "amount": 123456
 }
 ```
 

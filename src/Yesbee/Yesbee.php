@@ -122,7 +122,14 @@ class Yesbee
     {
 
     	$this->uri = $this->options['base_url'] . $this->uri;
-    	$this->request = $this->client->get($this->uri);
+
+    	// TODO: check again to append query string in Guzzle
+    	if($data['query']) {
+    		$queryString = http_build_query($data['query']);
+    		$this->request = $this->client->get($this->uri.'?'.$queryString);
+    	} else {
+    		$this->request = $this->client->get($this->uri);
+    	}
 
     	// TODO: $data set body to request
     	if($data['headers']) {
@@ -138,7 +145,12 @@ class Yesbee
     	$this->uri = $this->options['base_url'] . $this->uri;
     	$this->request = $this->client->post($this->uri);
 
-    	// TODO: $data set body to request
+    	if($data['body']) {
+    		$this->request = $this->client->post($this->uri, array(), $data['body']);
+    	} else {
+    		$this->request = $this->client->post($this->uri);
+    	}
+
     	if($data['headers']) {
     		foreach ($data['headers'] as $key => $value) {
     			$this->request->setHeader($key, $value);
