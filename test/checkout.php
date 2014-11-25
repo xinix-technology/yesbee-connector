@@ -9,7 +9,8 @@ $ret = array(
 	    "store_id" => "xyz",
 	    "amount" => 123456,
 	    "fee" => 12345,
-	    "total" => 123456 + 12345
+	    "total" => 123456 + 12345,
+	    "issuer_data" => "zxcvbnm"
     );
 
 echo json_encode($ret);

@@ -14,35 +14,26 @@
 		var TAG = "SOCKETIO:: ";
 		$(function() {
 
-			var socket = io('localhost:4000/checkoutEngine');
+			var socket = io('http://localhost:4000');
 
 			socket.on('connect', function() {
 
 				console.log(TAG, "connected");
 
-				setTimeout(function() {
+				console.log(TAG, socket.io.engine.id);
+				var param = <?php echo json_encode($parameter); ?>;
 
-					console.log(socket.io.engine.id);
-					var param = <?php echo json_encode($parameter); ?>;
+				console.log(param);
+				socket.emit('checkout-wait-for-payment', param);
 
-					console.log(param);
+				socket.on('udah-bayar', function() {
 
-					socket.emit('checkout', {
-						correlation_id: '${barcodeid}',
-						data:'xxx'
-					});
+				});
 
-					socket.on('udah-bayar', function() {
-
-					});
-
-					socket.on('paid', function() {
-
-						alert('hello guys, your payment is paid just now.');
-						// console.log(TAG, 'hello guys, your payment is paid just now.');
-					});
-
-
+				socket.on('checkout-paid', function(data) {
+					console.log(data);
+					alert('hello guys, your payment is paid just now.');
+					// console.log(TAG, 'hello guys, your payment is paid just now.');
 				});
 
 				socket.on('disconnect', function() {
