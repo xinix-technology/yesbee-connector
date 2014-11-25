@@ -1,0 +1,19 @@
+{
+    "name": "faridlab/yesbee-connector",
+    "description": "Yesbee Connector",
+    "require": {
+        "guzzle/guzzle": "~3.8.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Farid Hidayat",
+            "email": "e.faridhidayat@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Yesbee": "src/"
+        }
+    }
+}
